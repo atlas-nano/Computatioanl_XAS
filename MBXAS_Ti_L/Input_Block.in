@@ -1,0 +1,115 @@
+# Parallel processing environment settings
+PARA_COMMAND="srun"
+PARA_COMMAND_FULLPATH=
+PARA_PREFIX_FORMAT="--mpi=pmi2"
+PARA_NPROCS_PER_NODE=
+PARA_NPROCS_PER_POOL="4"
+PARA_POSTFIX=
+PARA_NJOB="1"
+PARA_PPN="64"
+
+#PYTHON - needs to be version 2.7+
+PYTHON_COMMAND="$PATH"
+XYZFILES="*.xyz"
+IBRAV=0
+################################################
+#TMP_NBND=1800
+#NBND=1800
+#TMP_STARTINGPOT='file'
+#STARTINGPOT='file'
+#TMP_BASIS_TRACE_TOL=1e-14
+#BASIS_TRACE_TOL=1e-14
+################################################
+MOLNAME="BTO"
+SPIN=""
+XASELEMENTS='Ti1'
+################################################
+XYZUNIT='angstrom'
+# Add these lines to Input_Block.in
+# You choose the elements to excite
+# uncomment or edit these lines to make your preferred XASELEMENTS
+CELL_PARAMETERS='CELL_PARAMETERS bohr
+ 7.540007   0.000000   0.000000
+  0.000000   7.540007   0.000000
+  0.000000   0.000000  71.724555'
+################################################
+
+# Adjust for experimental alignment of energy axis
+ESHIFT=0.0
+
+# Please change this according to which pseudos you are using
+#pseudopotential postfix
+PSEUDO_POT_ES_POST_FIX=pbe-van-yufengl-2p5.UPF
+# number of empty orbitals controlled by this factor which multiplies occupied orbital number
+NBND_FAC=3.0
+# uncommment this line to make full use of the Shirley basis in MBXAS calculations
+# Note that this may lead to nonsense at higher energies - you really can only rely
+# on states produced up to the band indices of the GS and/or CH excited state NSCF calcs
+#NBND_MBXAS='nbasis'
+
+# SCF k-points 
+K_POINTS="K_POINTS automatic
+2 2 2 0 0 0"
+
+# k-point grid for XAS calculations nxnxn
+XAS_ARG=5
+
+
+# Details for mbxaspy
+# excitation order
+# MAXFN = 1 => single e-h pairs
+# MAXFN = 2 => double e-h pairs (core excitation plus valence excitation)
+# etc.
+MAXFN='2'
+
+# Do not consider intensities less than this fraction of the most intense peak
+I_THR='1e-3'
+
+# numerical details for XAS calculation
+SIGMA=0.4  # Gaussian broadening
+NENER=1000  # Number of energy points
+ELOW=-5     # Begin spectrum this far below lowest eigenvalue
+EHIGH=0    # Stop spectrum this far above highest trustable eigenvalue
+ETEMP=0.0   # Electron temp
+DILATION=1.0
+#EVEC="1 0 0"
+#KVEC="0 0 1"
+
+#####################################################
+# Hopefully you never have to change these parameters
+
+# where will output be dumped
+TMP_DIR=./
+
+# xc functional
+PSEUDO_FUNCTIONAL=pbe
+
+#XAS info
+CHAPPROX="FCH"
+ALIGNCHAPRX="XCH"
+
+#Defines the variables from the 'system' namespace
+ECUT_WFC='30'
+ECUT_RHO='300'
+OCCUPATIONS='smearing'
+SMEARING='gaussian'
+DEGAUSS=0.0019
+
+#Defines the variables from the 'electrons' namespace
+DIAG='david'
+DIAG_NSCF='david'
+ELEC_CONV_THR='1.0d-7'
+ELEC_MIXING_BETA='0.3'
+MIXING_MODE='local-TF'
+electron_maxstep=400
+
+# SCF System details
+tot_charge=0
+FORCESTRESS="tstress=.false., tprnfor=.false."
+PW_POSTFIX=""
+
+
+DOWHAT="XAS"
+
+state_type='cube'
+states=()
