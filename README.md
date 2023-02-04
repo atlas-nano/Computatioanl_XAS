@@ -1,5 +1,4 @@
-# Example input and pseudopotential files for many body XAS calculations on polarized BaTiO3 slab models. 
-
+# Many-body XAS calculations based on GW-BSE and mb-ΔSCF on polarized ferroelectric BaTiO3 
 
 MBXAS directories include an input file labeled as Input_Block.in as well as XYZ geometry file, ground state pseudopotentials and excited state pseudopotential for the elements of interest.
 
