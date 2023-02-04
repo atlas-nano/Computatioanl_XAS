@@ -1,0 +1,113 @@
+#assumes you want to try and run on 64 cores
+para_prefix { mpirun -n 64 }
+
+# dft solver: abi, qe, obf
+dft{ qe }
+
+# Kpt mesh for final states
+nkpt {2 2 2 }
+ngkpt { 2 2 2 }
+# Kpt mesh for the screening
+screen.nkpt { 2 2 2 }
+
+# Total bands for screening
+#screen.nbands 600
+
+# Total bands for final states
+#nbands 300
+
+# SCF mixing
+occopt 3
+degauss 0.005
+mixing { 0.5 }
+# Mag. of latt. vec. in Bohr
+acell { 7.54 7.54 71.72455537 }
+#acell { 15.00  15.00  15.00 } in Angstrom
+
+# Cart comps. of latt. vecs.
+rprim {
+     1.0000000000000000    0.0000000000000000    0.0000000000000000
+     0.0000000000000000    1.0000000000000000    0.0000000000000000
+     0.0000000000000000    0.0000000000000000    1.0000000000000000 }
+
+# Z num for types
+znucl { 22 8 56 }
+
+# pseudo location
+ppdir { '../' }
+
+# pseudopotentials
+pp_list{
+                ti.fhi
+          08-o.lda.fhi
+56-Ba.lda.fhi
+ }
+
+# N atoms in unit cell
+natom 22
+
+# Type of each atom
+typat 
+{
+1	1	1	1	2	2	2	2	2	2	2	2	2	2	2	2	2	3	3	3	3	3	
+}
+
+# Relative positions of atoms
+xred {
+0.500000 0.500000 0.633645
+0.500000 0.500000 0.526281
+0.500000 0.500000 0.421157
+0.500000 0.500000 0.316032
+0.500000 0.500000 0.683968
+0.500000 0.500000 0.578843
+0.500000 0.500000 0.473719
+0.500000 0.500000 0.368594
+0.500000 0.500000 0.263470
+0.500000 0.000000 0.631406
+0.500000 0.000000 0.526281
+0.500000 0.000000 0.421157
+0.500000 0.000000 0.316032
+0.000000 0.500000 0.631406
+0.000000 0.500000 0.526281
+0.000000 0.500000 0.421157
+0.000000 0.500000 0.316032
+0.000000 0.000000 0.683968
+0.000000 0.000000 0.578843
+0.000000 0.000000 0.473719
+0.000000 0.000000 0.368594
+0.000000 0.000000 0.263470
+}
+# Kinetic Energy cutoff (in Ry for QE)
+ecut 80
+
+# SCF Energy tolerance
+toldfe 1.1d-6
+
+# SCF wftol
+tolwfr 1.1d-16
+
+# SCF iterations
+nstep 500
+# Static dielectric const
+diemac 5.06
+
+# xmesh
+CNBSE.xmesh { 6 6 6 }
+
+# opf control files
+opf.fill{ 8 o.fill }
+opf.opts{ 8 o.opts }
+
+# edge information # number of edges to calculate # atom number, n quantum number, l quantum number
+edges{ -8 1 0 }
+# spectral broadening in eV
+cnbse.broaden{ 0.544 }
+# The code will figure out a good plot range
+cnbse.spect_range{ -1 }
+
+# radius for shell for screening
+screen.shells{ 3.5 4.0 }
+cnbse.rad{ 4.0 }
+
+#Scaling Factor
+scfac 0.80
